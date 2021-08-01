@@ -1,9 +1,17 @@
-name: hello-world
-description: say Hello World
+name: hide-comment
+description: hide comment(s) in a pull request
 inputs:
-  name:
-    description: example input
+  authors:
+    description: multi-line string of author filter
     required: true
+    default: github-actions
+  starts-with:
+    description: multi-line string of starts-with filter
+    required: true
+  token:
+    description: GitHub token to post a comment
+    required: true
+    default: ${{ github.token }}
 runs:
   using: 'node12'
   main: 'dist/index.js'

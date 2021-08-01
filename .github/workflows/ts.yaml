@@ -36,7 +36,17 @@ jobs:
       - run: yarn build
       - run: yarn package
 
+      - uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `<!-- hide-comment-action --> 👋 e2e-test`
+            })
       - name: e2e-test
         uses: ./
         with:
-          name: foo
+          starts-with: |
+            <!-- hide-comment-action -->
