@@ -1,9 +1,15 @@
-# typescript-action [![ts](https://github.com/int128/typescript-action/actions/workflows/ts.yaml/badge.svg)](https://github.com/int128/typescript-action/actions/workflows/ts.yaml)
+# hide-comment-action [![ts](https://github.com/int128/hide-comment-action/actions/workflows/ts.yaml/badge.svg)](https://github.com/int128/hide-comment-action/actions/workflows/ts.yaml)
 
-This is a template of TypeScript Action.
+This is an action to hide comment(s) in a pull request.
 
 
 ## Getting Started
+
+This action will hide comment(s) which matches to the following filters:
+
+- The body of comment starts with one of `starts-with`
+- The author of comment is one of `authors`
+- The comment is not hidden
 
 To run this action:
 
@@ -12,22 +18,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: int128/typescript-action@v1
+      - uses: int128/hide-comment-action@v1
         with:
-          name: hello
+          starts-with: |
+            <!-- your-workflow-job -->
 ```
 
 
 ## Inputs
 
-| Name | Required | Default | Description
-|------|----------|---------|------------
-| `name` | `true` | - | example input
-
-
-## Outputs
-
-| Name | Description
-|------|------------
-| `example` | example output
+| Name | Required | Description
+|------|----------|-------------
+| `starts-with` | yes | multi-line string of starts-with filter
+| `authors` | yes | multi-line string of author filter (default to `github-actions`)
+| `token` | no | GitHub token to post a comment
