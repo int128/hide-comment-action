@@ -36,7 +36,8 @@ jobs:
       - run: yarn build
       - run: yarn package
 
-      - uses: actions/github-script@v4
+      - if: github.event_name == 'pull_request'
+        uses: actions/github-script@v4
         with:
           script: |
             github.issues.createComment({
