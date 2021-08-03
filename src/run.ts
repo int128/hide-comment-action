@@ -57,7 +57,7 @@ const filterComments = (q: CommentsQuery, inputs: Inputs): FilteredComment[] => 
       }
     }
     if (inputs.startsWith.length > 0) {
-      if (!inputs.startsWith.some((s) => c.body.startsWith(s))) {
+      if (!inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
         core.info(`starts-with did not match: ${c.url}`)
         continue
       }
