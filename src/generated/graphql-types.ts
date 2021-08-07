@@ -10706,6 +10706,8 @@ export type Organization = Node & Actor & PackageOwner & ProjectOwner & Reposito
   resourcePath: Scalars['URI'];
   /** The Organization's SAML identity providers */
   samlIdentityProvider?: Maybe<OrganizationIdentityProvider>;
+  /** List of users and organizations this entity is sponsoring. */
+  sponsoring: SponsorConnection;
   /** List of sponsors for this user or organization. */
   sponsors: SponsorConnection;
   /** Events involving this sponsorable, such as new sponsorships. */
@@ -10924,6 +10926,16 @@ export type OrganizationRepositoryDiscussionsArgs = {
   orderBy?: Maybe<DiscussionOrder>;
   repositoryId?: Maybe<Scalars['ID']>;
   answered?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** An account on GitHub, with one or more owners, that has repositories, members and teams. */
+export type OrganizationSponsoringArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<SponsorOrder>;
 };
 
 
@@ -13121,7 +13133,7 @@ export type PullRequestReviewThread = Node & {
   /** The side of the diff on which this thread was placed. */
   diffSide: DiffSide;
   id: Scalars['ID'];
-  /** Whether or not the thread has been collapsed (outdated or resolved) */
+  /** Whether or not the thread has been collapsed (resolved) */
   isCollapsed: Scalars['Boolean'];
   /** Indicates whether this thread was outdated by newer changes. */
   isOutdated: Scalars['Boolean'];
@@ -15575,6 +15587,8 @@ export type Repository = Node & ProjectOwner & PackageOwner & Subscribable & Sta
   __typename?: 'Repository';
   /** A list of users that can be assigned to issues in this repository. */
   assignableUsers: UserConnection;
+  /** Whether or not Auto-merge can be enabled on pull requests in this repository. */
+  autoMergeAllowed: Scalars['Boolean'];
   /** A list of branch protection rules for this repository. */
   branchProtectionRules: BranchProtectionRuleConnection;
   /** Returns the code of conduct for this repository */
@@ -17506,6 +17520,8 @@ export type Sponsorable = {
   isSponsoredBy: Scalars['Boolean'];
   /** True if the viewer is sponsored by this user/organization. */
   isSponsoringViewer: Scalars['Boolean'];
+  /** List of users and organizations this entity is sponsoring. */
+  sponsoring: SponsorConnection;
   /** List of sponsors for this user or organization. */
   sponsors: SponsorConnection;
   /** Events involving this sponsorable, such as new sponsorships. */
@@ -17528,6 +17544,16 @@ export type Sponsorable = {
 /** Entities that can be sponsored through GitHub Sponsors */
 export type SponsorableIsSponsoredByArgs = {
   accountLogin: Scalars['String'];
+};
+
+
+/** Entities that can be sponsored through GitHub Sponsors */
+export type SponsorableSponsoringArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<SponsorOrder>;
 };
 
 
@@ -20639,6 +20665,8 @@ export type User = Node & Actor & PackageOwner & ProjectOwner & RepositoryDiscus
   resourcePath: Scalars['URI'];
   /** Replies this user has saved */
   savedReplies?: Maybe<SavedReplyConnection>;
+  /** List of users and organizations this entity is sponsoring. */
+  sponsoring: SponsorConnection;
   /** List of sponsors for this user or organization. */
   sponsors: SponsorConnection;
   /** Events involving this sponsorable, such as new sponsorships. */
@@ -20956,6 +20984,16 @@ export type UserSavedRepliesArgs = {
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<SavedReplyOrder>;
+};
+
+
+/** A user is an individual's account on GitHub that owns repositories and can make new content. */
+export type UserSponsoringArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<SponsorOrder>;
 };
 
 
