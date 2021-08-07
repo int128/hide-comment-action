@@ -44,10 +44,22 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `👋 e2e-test\n<!-- hide-comment-action -->`
+              body: `👋 e2e-test\n<!-- tail -->`
+            })
+      - if: github.event_name == 'pull_request'
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `<!-- head -->\n👋 e2e-test`
             })
       - name: e2e-test
         uses: ./
         with:
           ends-with: |
-            <!-- hide-comment-action -->
+            <!-- tail -->
+          starts-with: |
+            <!-- head -->
