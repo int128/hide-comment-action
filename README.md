@@ -5,13 +5,6 @@ This is an action to hide comment(s) in a pull request.
 
 ## Getting Started
 
-This action will hide comment(s) which matches to the following filters:
-
-- The body of comment starts with one of `starts-with`
-- The body of comment ends with one of `ends-with`
-- The author of comment is one of `authors`
-- The comment is not hidden
-
 To run this action:
 
 ```yaml
@@ -25,7 +18,14 @@ jobs:
             <!-- your-workflow-job -->
 ```
 
-If any filter is given, this action hides all comments in a pull request.
+This action hides comment(s) which matches to the following filters:
+
+- The body of comment starts with one of `starts-with`
+- The body of comment ends with one of `ends-with`
+- The author of comment is one of `authors`
+- The comment is not hidden
+
+It hides all comments created by `github-actions` by default.
 
 
 ## Inputs

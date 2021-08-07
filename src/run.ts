@@ -33,44 +33,33 @@ export const run = async (inputs: Inputs): Promise<void> => {
   }
 }
 
-type FilteredComment = Pick<IssueComment, 'id' | 'url'>
+type Comment = Pick<IssueComment, 'id' | 'url' | 'isMinimized' | 'author' | 'body'>
 
-const filterComments = (q: CommentsQuery, inputs: Inputs): FilteredComment[] => {
+const filterComments = (q: CommentsQuery, inputs: Inputs): Comment[] => {
   if (q.repository?.pullRequest?.comments.nodes == null) {
     core.info(`unexpected response: repository === ${q.repository}`)
     core.info(`unexpected response: repository.pullRequest === ${q.repository?.pullRequest}`)
     return []
   }
+  const comments = q.repository.pullRequest.comments.nodes.filter((c) => c != null) as Comment[]
+  return comments.filter((c) => toMinimize(c, inputs))
+}
 
-  const f: FilteredComment[] = []
-  for (const c of q.repository.pullRequest.comments.nodes) {
-    if (c === null) {
-      continue
-    }
-    if (c.isMinimized) {
-      continue
-    }
-
-    if (inputs.authors.length > 0) {
-      if (!inputs.authors.some((a) => c.author?.login === a)) {
-        core.info(`authors did not match: ${c.url}`)
-        continue
-      }
-    }
-    if (inputs.startsWith.length > 0) {
-      if (!inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
-        core.info(`starts-with did not match: ${c.url}`)
-        continue
-      }
-    }
-    if (inputs.endsWith.length > 0) {
-      if (!inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
-        core.info(`ends-with did not match: ${c.url}`)
-        continue
-      }
-    }
-
-    f.push(c)
+export const toMinimize = (c: Comment, inputs: Inputs): boolean => {
+  if (c.isMinimized) {
+    return false
   }
-  return f
+  if (inputs.authors.some((a) => c.author?.login === a)) {
+    core.info(`authors filter matched: ${c.url}`)
+    return true
+  }
+  if (inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
+    core.info(`starts-with matched: ${c.url}`)
+    return true
+  }
+  if (inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
+    core.info(`ends-with matched: ${c.url}`)
+    return true
+  }
+  return false
 }
