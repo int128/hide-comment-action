@@ -8,6 +8,7 @@ import { minimizeComment } from './queries/minimize'
 type Inputs = {
   authors: string[]
   startsWith: string[]
+  endsWith: string[]
   token: string
 }
 
@@ -59,6 +60,12 @@ const filterComments = (q: CommentsQuery, inputs: Inputs): FilteredComment[] => 
     if (inputs.startsWith.length > 0) {
       if (!inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
         core.info(`starts-with did not match: ${c.url}`)
+        continue
+      }
+    }
+    if (inputs.endsWith.length > 0) {
+      if (!inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
+        core.info(`ends-with did not match: ${c.url}`)
         continue
       }
     }

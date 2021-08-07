@@ -6,6 +6,7 @@ const main = async (): Promise<void> => {
     await run({
       authors: core.getMultilineInput('authors', { required: true }),
       startsWith: core.getMultilineInput('starts-with', { required: true }),
+      endsWith: core.getMultilineInput('ends-with', { required: true }),
       token: core.getInput('token', { required: true }),
     })
   } catch (error) {

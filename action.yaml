@@ -8,6 +8,9 @@ inputs:
   starts-with:
     description: multi-line string of starts-with filter
     required: true
+  ends-with:
+    description: multi-line string of ends-with filter
+    required: true
   token:
     description: GitHub token to post a comment
     required: true

@@ -8,6 +8,7 @@ This is an action to hide comment(s) in a pull request.
 This action will hide comment(s) which matches to the following filters:
 
 - The body of comment starts with one of `starts-with`
+- The body of comment ends with one of `ends-with`
 - The author of comment is one of `authors`
 - The comment is not hidden
 
@@ -20,7 +21,7 @@ jobs:
     steps:
       - uses: int128/hide-comment-action@v1
         with:
-          starts-with: |
+          ends-with: |
             <!-- your-workflow-job -->
 ```
 
@@ -30,5 +31,6 @@ jobs:
 | Name | Required | Description
 |------|----------|-------------
 | `starts-with` | yes | multi-line string of starts-with filter
+| `ends-with` | yes | multi-line string of ends-with filter
 | `authors` | yes | multi-line string of author filter (default to `github-actions`)
 | `token` | no | GitHub token to post a comment
