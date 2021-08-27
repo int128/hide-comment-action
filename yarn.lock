@@ -1753,7 +1753,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@^4.29.2":
+"@typescript-eslint/eslint-plugin@4.29.2":
   version "4.29.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.29.2.tgz#f54dc0a32b8f61c6024ab8755da05363b733838d"
   integrity sha512-x4EMgn4BTfVd9+Z+r+6rmWxoAzBaapt4QFqE+d8L8sUtYZYLDTK6VG/y/SMMWA5t1/BVU5Kf+20rX4PtWzUYZg==
