@@ -19,7 +19,7 @@ export const run = async (inputs: Inputs): Promise<void> => {
   }
   const octokit = github.getOctokit(inputs.token)
 
-  core.info(`query comments in pull request ${github.context.payload.pull_request.html_url}`)
+  core.info(`query comments in pull request ${github.context.payload.pull_request.html_url ?? '?'}`)
   const comments = await queryComments(octokit, {
     owner: github.context.repo.owner,
     name: github.context.repo.repo,
@@ -28,7 +28,7 @@ export const run = async (inputs: Inputs): Promise<void> => {
 
   const filteredComments = filterComments(comments, inputs)
   for (const c of filteredComments) {
-    core.info(`minimize comment ${c.url}`)
+    core.info(`minimize comment ${JSON.stringify(c.url)}`)
     await minimizeComment(octokit, { id: c.id })
   }
 }
@@ -37,8 +37,7 @@ type Comment = Pick<IssueComment, 'id' | 'url' | 'isMinimized' | 'author' | 'bod
 
 const filterComments = (q: CommentsQuery, inputs: Inputs): Comment[] => {
   if (q.repository?.pullRequest?.comments.nodes == null) {
-    core.info(`unexpected response: repository === ${q.repository}`)
-    core.info(`unexpected response: repository.pullRequest === ${q.repository?.pullRequest}`)
+    core.info(`unexpected response: repository === ${JSON.stringify(q.repository)}`)
     return []
   }
   const comments = q.repository.pullRequest.comments.nodes.filter((c) => c != null) as Comment[]
@@ -50,15 +49,15 @@ export const toMinimize = (c: Comment, inputs: Inputs): boolean => {
     return false
   }
   if (inputs.authors.some((a) => c.author?.login === a)) {
-    core.info(`authors filter matched: ${c.url}`)
+    core.info(`authors filter matched: ${JSON.stringify(c.url)}`)
     return true
   }
   if (inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
-    core.info(`starts-with matched: ${c.url}`)
+    core.info(`starts-with matched: ${JSON.stringify(c.url)}`)
     return true
   }
   if (inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
-    core.info(`ends-with matched: ${c.url}`)
+    core.info(`ends-with matched: ${JSON.stringify(c.url)}`)
     return true
   }
   return false
