@@ -37,7 +37,7 @@ jobs:
       - run: yarn package
 
       - if: github.event_name == 'pull_request'
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           script: |
             github.issues.createComment({
@@ -47,7 +47,7 @@ jobs:
               body: `👋 e2e-test\n<!-- tail -->`
             })
       - if: github.event_name == 'pull_request'
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           script: |
             github.issues.createComment({
