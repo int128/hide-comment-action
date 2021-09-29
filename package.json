@@ -20,7 +20,7 @@
     "@graphql-codegen/cli": "2.2.0",
     "@graphql-codegen/import-types-preset": "2.1.4",
     "@graphql-codegen/typescript": "2.2.2",
-    "@graphql-codegen/typescript-operations": "2.1.4",
+    "@graphql-codegen/typescript-operations": "2.1.5",
     "@octokit/graphql-schema": "10.72.0",
     "@types/jest": "27.0.2",
     "@types/node": "14.17.19",
