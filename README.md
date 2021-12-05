@@ -33,9 +33,9 @@ It hides comment(s) only if triggered on a pull request event.
 
 ## Inputs
 
-| Name | Required | Description
+| Name | Default | Description
 |------|----------|-------------
-| `starts-with` | no | multi-line string of starts-with filter
-| `ends-with` | no | multi-line string of ends-with filter
-| `authors` | no | multi-line string of author filter (default to `github-actions`)
-| `token` | no | GitHub token to post a comment
+| `starts-with` | - | multi-line string of starts-with filter
+| `ends-with` | - | multi-line string of ends-with filter
+| `authors` | `github-actions` | multi-line string of author filter
+| `token` | `${{ github.token }}` | GitHub token to post a comment
