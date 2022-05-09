@@ -14,7 +14,7 @@
   "dependencies": {
     "@actions/core": "1.8.0",
     "@actions/github": "5.0.1",
-    "graphql": "16.4.0"
+    "graphql": "16.5.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
