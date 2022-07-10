@@ -10,25 +10,15 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A (potentially binary) string encoded using base64. */
   Base64String: any;
-  /** An ISO-8601 encoded date string. */
   Date: any;
-  /** An ISO-8601 encoded UTC date string. */
   DateTime: any;
-  /** A Git object ID. */
   GitObjectID: any;
-  /** Git SSH string */
   GitSSHRemote: any;
-  /** An ISO-8601 encoded date string. Unlike the DateTime type, GitTimestamp is not converted in UTC. */
   GitTimestamp: any;
-  /** A string containing HTML code. */
   HTML: any;
-  /** An ISO-8601 encoded UTC date string with millisecond precision. */
   PreciseDateTime: any;
-  /** An RFC 3986, RFC 3987, and RFC 6570 (level 4) compliant URI string. */
   URI: any;
-  /** A valid x509 certificate string */
   X509Certificate: any;
 };
 
@@ -11840,7 +11830,10 @@ export type PackageTag = Node & {
 export enum PackageType {
   /** A debian package. */
   Debian = 'DEBIAN',
-  /** A docker image. */
+  /**
+   * A docker image.
+   * @deprecated DOCKER will be removed from this enum as this type will be migrated to only be used by the Packages REST API. Removal on 2021-06-21 UTC.
+   */
   Docker = 'DOCKER',
   /** A maven package. */
   Maven = 'MAVEN',
@@ -16856,7 +16849,10 @@ export type RepositoryInvitationOrder = {
 export enum RepositoryInvitationOrderField {
   /** Order repository invitations by creation time */
   CreatedAt = 'CREATED_AT',
-  /** Order repository invitations by invitee login */
+  /**
+   * Order repository invitations by invitee login
+   * @deprecated `INVITEE_LOGIN` is no longer a valid field value. Repository invitations can now be associated with an email, not only an invitee. Removal on 2020-10-01 UTC.
+   */
   InviteeLogin = 'INVITEE_LOGIN'
 }
 
