@@ -23,7 +23,7 @@
     "@graphql-codegen/typescript-operations": "2.5.3",
     "@octokit/graphql-schema": "10.73.0",
     "@tsconfig/node16": "1.0.3",
-    "@types/jest": "29.0.0",
+    "@types/jest": "29.0.1",
     "@types/node": "16.11.58",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "5.36.2",
