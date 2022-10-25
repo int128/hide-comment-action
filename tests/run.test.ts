@@ -14,6 +14,7 @@ describe('filter to minimize', () => {
           authors: [],
           endsWith: [],
           startsWith: [],
+          contains: [],
           token: `token`,
         }
       )
@@ -34,6 +35,7 @@ describe('filter to minimize', () => {
           authors: ['github-actions'],
           endsWith: [],
           startsWith: [],
+          contains: [],
           token: `token`,
         }
       )
@@ -54,6 +56,7 @@ describe('filter to minimize', () => {
           authors: ['github-actions'],
           endsWith: [],
           startsWith: [],
+          contains: [],
           token: `token`,
         }
       )
@@ -73,6 +76,7 @@ describe('filter to minimize', () => {
           authors: ['bot'],
           endsWith: [],
           startsWith: [],
+          contains: [],
           token: `token`,
         }
       )
@@ -92,6 +96,7 @@ describe('filter to minimize', () => {
           authors: [],
           endsWith: [],
           startsWith: ['<!-- head -->'],
+          contains: [],
           token: `token`,
         }
       )
@@ -110,6 +115,7 @@ describe('filter to minimize', () => {
           authors: [],
           endsWith: [],
           startsWith: ['<!-- head -->'],
+          contains: [],
           token: `token`,
         }
       )
@@ -129,6 +135,7 @@ describe('filter to minimize', () => {
           authors: [],
           endsWith: ['<!-- tail -->'],
           startsWith: [],
+          contains: [],
           token: `token`,
         }
       )
@@ -147,6 +154,46 @@ describe('filter to minimize', () => {
           authors: [],
           endsWith: ['<!-- tail -->'],
           startsWith: [],
+          contains: [],
+          token: `token`,
+        }
+      )
+    ).toBeFalsy()
+  })
+
+  test('contains filter', () => {
+    expect(
+      toMinimize(
+        {
+          id: `id`,
+          body: `foo<!-- mark -->bar`,
+          isMinimized: false,
+          url: `https://www.example.com`,
+        },
+        {
+          authors: [],
+          endsWith: [],
+          startsWith: [],
+          contains: ['<!-- mark -->'],
+          token: `token`,
+        }
+      )
+    ).toBeTruthy()
+  })
+  test('contains filter did not match', () => {
+    expect(
+      toMinimize(
+        {
+          id: `id`,
+          body: `foo<!-- mark -->bar`,
+          isMinimized: false,
+          url: `https://www.example.com`,
+        },
+        {
+          authors: [],
+          endsWith: [],
+          startsWith: [],
+          contains: ['<!-- bar -->'],
           token: `token`,
         }
       )

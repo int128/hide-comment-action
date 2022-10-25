@@ -9,6 +9,7 @@ type Inputs = {
   authors: string[]
   startsWith: string[]
   endsWith: string[]
+  contains: string[]
   token: string
 }
 
@@ -58,6 +59,10 @@ export const toMinimize = (c: Comment, inputs: Inputs): boolean => {
   }
   if (inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
     core.info(`ends-with matched: ${JSON.stringify(c.url)}`)
+    return true
+  }
+  if (inputs.contains.some((s) => c.body.includes(s))) {
+    core.info(`contains matched: ${JSON.stringify(c.url)}`)
     return true
   }
   return false
