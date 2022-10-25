@@ -7,7 +7,7 @@ export type CommentsQueryVariables = Types.Exact<{
 }>;
 
 
-export type CommentsQuery = { __typename?: 'Query', repository?: { __typename?: 'Repository', pullRequest?: { __typename?: 'PullRequest', comments: { __typename?: 'IssueCommentConnection', nodes?: Array<{ __typename?: 'IssueComment', id: string, url: any, body: string, isMinimized: boolean, author?: { __typename?: 'Bot', login: string } | { __typename?: 'EnterpriseUserAccount', login: string } | { __typename?: 'Mannequin', login: string } | { __typename?: 'Organization', login: string } | { __typename?: 'User', login: string } | null } | null> | null } } | null } | null };
+export type CommentsQuery = { __typename?: 'Query', repository?: { __typename?: 'Repository', pullRequest?: { __typename?: 'PullRequest', comments: { __typename?: 'IssueCommentConnection', nodes?: Array<{ __typename?: 'IssueComment', id: string, url: string, body: string, isMinimized: boolean, author?: { __typename?: 'Bot', login: string } | { __typename?: 'EnterpriseUserAccount', login: string } | { __typename?: 'Mannequin', login: string } | { __typename?: 'Organization', login: string } | { __typename?: 'User', login: string } | null } | null> | null } } | null } | null };
 
 export type MinimizeCommentMutationVariables = Types.Exact<{
   id: Types.Scalars['ID'];

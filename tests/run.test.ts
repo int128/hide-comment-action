@@ -29,7 +29,7 @@ describe('filter to minimize', () => {
           body: `body`,
           isMinimized: true,
           url: `https://www.example.com`,
-          author: { login: 'github-actions', url: '', avatarUrl: '', resourcePath: '' },
+          author: { login: 'github-actions' },
         },
         {
           authors: ['github-actions'],
@@ -50,7 +50,7 @@ describe('filter to minimize', () => {
           body: `body`,
           isMinimized: false,
           url: `https://www.example.com`,
-          author: { login: 'github-actions', url: '', avatarUrl: '', resourcePath: '' },
+          author: { login: 'github-actions' },
         },
         {
           authors: ['github-actions'],
@@ -70,7 +70,7 @@ describe('filter to minimize', () => {
           body: `body`,
           isMinimized: false,
           url: `https://www.example.com`,
-          author: { login: 'github-actions', url: '', avatarUrl: '', resourcePath: '' },
+          author: { login: 'github-actions' },
         },
         {
           authors: ['bot'],
