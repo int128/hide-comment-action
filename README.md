@@ -23,9 +23,10 @@ It hides all comments created by `github-actions`.
 
 You can set the following conditions:
 
+- The author of comment is one of `authors`
 - The body of comment starts with one of `starts-with`
 - The body of comment ends with one of `ends-with`
-- The author of comment is one of `authors`
+- The body of comment contains one of `contains`
 
 If a comment matches to **any** condition (i.e. evaluated as OR), this action hides it.
 
@@ -65,7 +66,8 @@ It ignores other events.
 
 | Name | Default | Description
 |------|----------|-------------
+| `authors` | `github-actions` | Multi-line string of author condition
 | `starts-with` | - | Multi-line string of starts-with condition
 | `ends-with` | - | Multi-line string of ends-with condition
-| `authors` | `github-actions` | Multi-line string of author condition
+| `contains` | - | Multi-line string of contains condition
 | `token` | `${{ github.token }}` | GitHub token to post a comment

@@ -2,14 +2,17 @@ name: hide-comment
 description: hide comment(s) in a pull request
 inputs:
   authors:
-    description: multi-line string of author filter
+    description: multi-line string of author condition
     required: false
     default: github-actions
   starts-with:
-    description: multi-line string of starts-with filter
+    description: multi-line string of starts-with condition
     required: false
   ends-with:
-    description: multi-line string of ends-with filter
+    description: multi-line string of ends-with condition
+    required: false
+  contains:
+    description: multi-line string of contains condition
     required: false
   token:
     description: GitHub token to post a comment
