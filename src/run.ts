@@ -39,7 +39,7 @@ type Comment = NonNullable<
   >[number]
 >
 
-const filterComments = (q: CommentsQuery, inputs: Inputs) => {
+const filterComments = (q: CommentsQuery, inputs: Inputs): Comment[] => {
   if (q.repository?.pullRequest?.comments.nodes == null) {
     core.info(`unexpected response: repository === ${JSON.stringify(q.repository)}`)
     return []
