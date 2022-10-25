@@ -1,7 +1,6 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import { CommentsQuery } from './generated/graphql'
-import { IssueComment } from './generated/graphql-types'
 import { queryComments } from './queries/comments'
 import { minimizeComment } from './queries/minimize'
 
