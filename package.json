@@ -24,7 +24,7 @@
     "@octokit/graphql-schema": "12.18.0",
     "@tsconfig/node16": "1.0.3",
     "@types/jest": "29.2.3",
-    "@types/node": "16.18.3",
+    "@types/node": "16.18.4",
     "@typescript-eslint/eslint-plugin": "5.45.0",
     "@typescript-eslint/parser": "5.45.0",
     "@vercel/ncc": "0.34.0",
