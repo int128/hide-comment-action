@@ -19,7 +19,9 @@ jobs:
       - uses: int128/hide-comment-action@v1
 ```
 
-It hides all comments created by `github-actions`.
+It hides all comments created by `github-actions` user.
+
+### Filter comments
 
 You can set the following conditions:
 
@@ -28,7 +30,9 @@ You can set the following conditions:
 - The body of comment ends with one of `ends-with`
 - The body of comment contains one of `contains`
 
-If a comment matches to **any** condition (i.e. evaluated as OR), this action hides it.
+This action hides comment(s) which matches to **any** condition, i.e., evaluated as OR.
+
+If no condition is given, this action hides comment(s) created by the user of GitHub token.
 
 
 ### Example: using `ends-with` condition
@@ -66,7 +70,7 @@ It ignores other events.
 
 | Name | Default | Description
 |------|----------|-------------
-| `authors` | `github-actions` | Multi-line string of author condition
+| `authors` | - | Multi-line string of author condition
 | `starts-with` | - | Multi-line string of starts-with condition
 | `ends-with` | - | Multi-line string of ends-with condition
 | `contains` | - | Multi-line string of contains condition

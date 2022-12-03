@@ -4,7 +4,6 @@ inputs:
   authors:
     description: multi-line string of author condition
     required: false
-    default: github-actions
   starts-with:
     description: multi-line string of starts-with condition
     required: false
