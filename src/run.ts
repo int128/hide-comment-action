@@ -17,6 +17,7 @@ export const run = async (inputs: Inputs): Promise<void> => {
     core.info(`non pull_request event: ${github.context.eventName}`)
     return
   }
+  const pullNumber = github.context.payload.pull_request.number
   const octokit = github.getOctokit(inputs.token)
 
   if (!inputs.authors && !inputs.contains && !inputs.startsWith && !inputs.endsWith) {
@@ -25,13 +26,28 @@ export const run = async (inputs: Inputs): Promise<void> => {
     inputs.authors = [authenticatedUser.login]
   }
 
-  core.info(`query comments in pull request ${github.context.payload.pull_request.html_url ?? '?'}`)
-  const q = await queryComments(octokit, {
-    owner: github.context.repo.owner,
-    name: github.context.repo.repo,
-    number: github.context.payload.pull_request.number,
+  const q = await core.group(`query comments in pull request #${pullNumber}`, async () => {
+    const q = await queryComments(octokit, {
+      owner: github.context.repo.owner,
+      name: github.context.repo.repo,
+      number: pullNumber,
+    })
+    core.info(JSON.stringify(q, undefined, 2))
+    return q
   })
 
+  core.info(
+    `Filter comments by conditions: ${JSON.stringify(
+      {
+        authors: inputs.authors,
+        startsWith: inputs.startsWith,
+        endsWith: inputs.endsWith,
+        contains: inputs.contains,
+      },
+      undefined,
+      2
+    )}`
+  )
   const filteredComments = filterComments(q, inputs)
   for (const c of filteredComments) {
     core.info(`minimize comment ${c.url}`)
