@@ -20,7 +20,12 @@ export const run = async (inputs: Inputs): Promise<void> => {
   const pullNumber = github.context.payload.pull_request.number
   const octokit = github.getOctokit(inputs.token)
 
-  if (!inputs.authors && !inputs.contains && !inputs.startsWith && !inputs.endsWith) {
+  if (
+    inputs.authors.length === 0 &&
+    inputs.contains.length === 0 &&
+    inputs.startsWith.length === 0 &&
+    inputs.endsWith.length === 0
+  ) {
     const { data: authenticatedUser } = await octokit.rest.users.getAuthenticated()
     core.info(`no condition is given, hide comments created by user ${authenticatedUser.login}`)
     inputs.authors = [authenticatedUser.login]
