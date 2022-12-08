@@ -1,8 +1,11 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
+import { GitHub } from '@actions/github/lib/utils'
 import { CommentsQuery } from './generated/graphql'
 import { queryComments } from './queries/comments'
 import { minimizeComment } from './queries/minimize'
+
+type Octokit = InstanceType<typeof GitHub>
 
 type Inputs = {
   authors: string[]
@@ -20,10 +23,15 @@ export const run = async (inputs: Inputs): Promise<void> => {
   const pullNumber = github.context.payload.pull_request.number
   const octokit = github.getOctokit(inputs.token)
 
-  if (!inputs.authors && !inputs.contains && !inputs.startsWith && !inputs.endsWith) {
-    const { data: authenticatedUser } = await octokit.rest.users.getAuthenticated()
-    core.info(`no condition is given, hide comments created by user ${authenticatedUser.login}`)
-    inputs.authors = [authenticatedUser.login]
+  if (
+    inputs.authors.length === 0 &&
+    inputs.contains.length === 0 &&
+    inputs.startsWith.length === 0 &&
+    inputs.endsWith.length === 0
+  ) {
+    const login = await getCurrentLogin(octokit)
+    core.info(`no condition is given, hide comments created by user ${login}`)
+    inputs.authors = [login]
   }
 
   const q = await core.group(`query comments in pull request #${pullNumber}`, async () => {
@@ -52,6 +60,16 @@ export const run = async (inputs: Inputs): Promise<void> => {
   for (const c of filteredComments) {
     core.info(`minimize comment ${c.url}`)
     await minimizeComment(octokit, { id: c.id })
+  }
+}
+
+const getCurrentLogin = async (octokit: Octokit) => {
+  try {
+    const { data: user } = await octokit.rest.users.getAuthenticated()
+    return user.login
+  } catch (e) {
+    core.warning(`could not determine the current user: ${String(e)}`)
+    return 'github-actions'
   }
 }
 
