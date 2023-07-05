@@ -53,8 +53,8 @@ export const run = async (inputs: Inputs): Promise<void> => {
         contains: inputs.contains,
       },
       undefined,
-      2
-    )}`
+      2,
+    )}`,
   )
   const filteredComments = filterComments(q, inputs)
   for (const c of filteredComments) {

@@ -16,8 +16,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 
@@ -37,8 +37,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 
@@ -58,8 +58,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeTruthy()
   })
   test('authors filter did not match', () => {
@@ -78,8 +78,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 
@@ -98,8 +98,8 @@ describe('filter to minimize', () => {
           startsWith: ['<!-- head -->'],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeTruthy()
   })
   test('starts-with filter did not match', () => {
@@ -117,8 +117,8 @@ describe('filter to minimize', () => {
           startsWith: ['<!-- head -->'],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 
@@ -137,8 +137,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeTruthy()
   })
   test('ends-with filter did not match', () => {
@@ -156,8 +156,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: [],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 
@@ -176,8 +176,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: ['<!-- mark -->'],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeTruthy()
   })
   test('contains filter did not match', () => {
@@ -195,8 +195,8 @@ describe('filter to minimize', () => {
           startsWith: [],
           contains: ['<!-- bar -->'],
           token: `token`,
-        }
-      )
+        },
+      ),
     ).toBeFalsy()
   })
 })
