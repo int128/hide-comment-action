@@ -21666,6 +21666,8 @@ export type RepositoryRuleInput = {
 
 /** The rule types supported in rulesets */
 export enum RepositoryRuleType {
+  /** Authorization */
+  Authorization = 'AUTHORIZATION',
   /** Branch name pattern */
   BranchNamePattern = 'BRANCH_NAME_PATTERN',
   /** Committer email pattern */
@@ -21678,6 +21680,16 @@ export enum RepositoryRuleType {
   Creation = 'CREATION',
   /** Only allow users with bypass permissions to delete matching refs. */
   Deletion = 'DELETION',
+  /** File path pattern */
+  FilePathPattern = 'FILE_PATH_PATTERN',
+  /** Branch is read-only. Users cannot push to the branch. */
+  LockBranch = 'LOCK_BRANCH',
+  /** Max ref updates */
+  MaxRefUpdates = 'MAX_REF_UPDATES',
+  /** Merges must be performed via a merge queue. */
+  MergeQueue = 'MERGE_QUEUE',
+  /** Merge queue locked ref */
+  MergeQueueLockedRef = 'MERGE_QUEUE_LOCKED_REF',
   /** Prevent users with push access from force pushing to refs. */
   NonFastForward = 'NON_FAST_FORWARD',
   /** Require all commits be made to a non-target branch and submitted via a pull request before they can be merged. */
@@ -21686,14 +21698,26 @@ export enum RepositoryRuleType {
   RequiredDeployments = 'REQUIRED_DEPLOYMENTS',
   /** Prevent merge commits from being pushed to matching refs. */
   RequiredLinearHistory = 'REQUIRED_LINEAR_HISTORY',
+  /** When enabled, all conversations on code must be resolved before a pull request can be merged into a branch that matches this rule. */
+  RequiredReviewThreadResolution = 'REQUIRED_REVIEW_THREAD_RESOLUTION',
   /** Commits pushed to matching refs must have verified signatures. */
   RequiredSignatures = 'REQUIRED_SIGNATURES',
   /** Choose which status checks must pass before branches can be merged into a branch that matches this rule. When enabled, commits must first be pushed to another branch, then merged or pushed directly to a ref that matches this rule after status checks have passed. */
   RequiredStatusChecks = 'REQUIRED_STATUS_CHECKS',
+  /** Require all commits be made to a non-target branch and submitted via a pull request and required workflow checks to pass before they can be merged. */
+  RequiredWorkflowStatusChecks = 'REQUIRED_WORKFLOW_STATUS_CHECKS',
+  /** Commits pushed to matching refs must have verified signatures. */
+  RulesetRequiredSignatures = 'RULESET_REQUIRED_SIGNATURES',
+  /** Secret scanning */
+  SecretScanning = 'SECRET_SCANNING',
+  /** Tag */
+  Tag = 'TAG',
   /** Tag name pattern */
   TagNamePattern = 'TAG_NAME_PATTERN',
   /** Only allow users with bypass permission to update matching refs. */
-  Update = 'UPDATE'
+  Update = 'UPDATE',
+  /** Workflow files cannot be modified. */
+  WorkflowUpdates = 'WORKFLOW_UPDATES'
 }
 
 /** A repository ruleset. */
