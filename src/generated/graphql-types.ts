@@ -21716,6 +21716,8 @@ export enum RepositoryRuleType {
   TagNamePattern = 'TAG_NAME_PATTERN',
   /** Only allow users with bypass permission to update matching refs. */
   Update = 'UPDATE',
+  /** Require all changes made to a targeted branch to pass the specified workflows before they can be merged. */
+  Workflows = 'WORKFLOWS',
   /** Workflow files cannot be modified. */
   WorkflowUpdates = 'WORKFLOW_UPDATES'
 }
@@ -22512,7 +22514,7 @@ export enum RuleEnforcement {
 }
 
 /** Types which can be parameters for `RepositoryRule` objects. */
-export type RuleParameters = BranchNamePatternParameters | CommitAuthorEmailPatternParameters | CommitMessagePatternParameters | CommitterEmailPatternParameters | PullRequestParameters | RequiredDeploymentsParameters | RequiredStatusChecksParameters | TagNamePatternParameters | UpdateParameters;
+export type RuleParameters = BranchNamePatternParameters | CommitAuthorEmailPatternParameters | CommitMessagePatternParameters | CommitterEmailPatternParameters | PullRequestParameters | RequiredDeploymentsParameters | RequiredStatusChecksParameters | TagNamePatternParameters | UpdateParameters | WorkflowsParameters;
 
 /** Specifies the parameters for a `RepositoryRule` object. Only one of the fields should be specified. */
 export type RuleParametersInput = {
@@ -22534,6 +22536,8 @@ export type RuleParametersInput = {
   tagNamePattern?: InputMaybe<TagNamePatternParametersInput>;
   /** Parameters used for the `update` rule type */
   update?: InputMaybe<UpdateParametersInput>;
+  /** Parameters used for the `workflows` rule type */
+  workflows?: InputMaybe<WorkflowsParametersInput>;
 };
 
 /** Types which can have `RepositoryRule` objects. */
@@ -28607,6 +28611,31 @@ export type WorkflowRunsArgs = {
   orderBy?: InputMaybe<WorkflowRunOrder>;
 };
 
+/** A workflow that must run for this rule to pass */
+export type WorkflowFileReference = {
+  __typename?: 'WorkflowFileReference';
+  /** The path to the workflow file */
+  path: Scalars['String']['output'];
+  /** The ref (branch or tag) of the workflow file to use */
+  ref?: Maybe<Scalars['String']['output']>;
+  /** The ID of the repository where the workflow is defined */
+  repositoryId: Scalars['Int']['output'];
+  /** The commit SHA of the workflow file to use */
+  sha?: Maybe<Scalars['String']['output']>;
+};
+
+/** A workflow that must run for this rule to pass */
+export type WorkflowFileReferenceInput = {
+  /** The path to the workflow file */
+  path: Scalars['String']['input'];
+  /** The ref (branch or tag) of the workflow file to use */
+  ref?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the repository where the workflow is defined */
+  repositoryId: Scalars['Int']['input'];
+  /** The commit SHA of the workflow file to use */
+  sha?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** A workflow run. */
 export type WorkflowRun = Node & UniformResourceLocatable & {
   __typename?: 'WorkflowRun';
@@ -28726,3 +28755,16 @@ export enum WorkflowState {
   /** The workflow was disabled manually. */
   DisabledManually = 'DISABLED_MANUALLY'
 }
+
+/** Require all changes made to a targeted branch to pass the specified workflows before they can be merged. */
+export type WorkflowsParameters = {
+  __typename?: 'WorkflowsParameters';
+  /** Workflows that must pass for this rule to pass. */
+  workflows: Array<WorkflowFileReference>;
+};
+
+/** Require all changes made to a targeted branch to pass the specified workflows before they can be merged. */
+export type WorkflowsParametersInput = {
+  /** Workflows that must pass for this rule to pass. */
+  workflows: Array<WorkflowFileReferenceInput>;
+};
