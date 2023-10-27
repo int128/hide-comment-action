@@ -13,6 +13,9 @@ inputs:
   contains:
     description: multi-line string of contains condition
     required: false
+  issue-number:
+    description: Number of an issue or pull request on which to hide comment(s)
+    required: false
   token:
     description: GitHub token to post a comment
     required: true

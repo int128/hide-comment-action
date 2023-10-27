@@ -12,15 +12,16 @@ type Inputs = {
   startsWith: string[]
   endsWith: string[]
   contains: string[]
+  issueNumber?: number
   token: string
 }
 
 export const run = async (inputs: Inputs): Promise<void> => {
-  if (github.context.payload.pull_request === undefined) {
+  const pullNumber = inputs.issueNumber ?? github.context.payload.pull_request?.number
+  if (pullNumber === undefined) {
     core.info(`non pull_request event: ${github.context.eventName}`)
     return
   }
-  const pullNumber = github.context.payload.pull_request.number
   const octokit = github.getOctokit(inputs.token)
 
   if (
