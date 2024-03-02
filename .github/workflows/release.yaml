@@ -18,8 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
-      - run: yarn
-      - run: yarn build
-      - run: yarn package
+      - run: corepack enable pnpm
+      - run: pnpm i
+      - run: pnpm build
       - uses: int128/release-typescript-action@v1
