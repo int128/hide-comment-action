@@ -1,38 +1,39 @@
 name: ts
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - src/**
-      - tests/**
-      - '*.json'
-      - action.yaml
-      - .github/workflows/ts.yaml
   pull_request:
-    branches: [main]
     paths:
       - src/**
       - tests/**
       - '*.json'
-      - action.yaml
+      - '*.yaml'
+      - .github/workflows/ts.yaml
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - tests/**
+      - '*.json'
+      - '*.yaml'
       - .github/workflows/ts.yaml
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
           node-version: 20
-          cache: yarn
-      - run: yarn
-      - run: yarn lint
-      - run: yarn format-check
-      - run: yarn test
-      - run: yarn build
-      - run: yarn package
+      - run: corepack enable pnpm
+      - run: pnpm i
+      - run: pnpm test
+      - run: pnpm build
 
       - if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -77,13 +78,18 @@ jobs:
 
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:
           node-version: 20
-          cache: yarn
-      - run: yarn
-      - run: yarn format
-      - run: yarn graphql-codegen
-      - uses: int128/update-generated-files-action@v2
+      - run: corepack enable pnpm
+      - run: pnpm i
+      - run: pnpm lint --fix
+      - run: pnpm format
+      - run: pnpm graphql-codegen
+      - uses: int128/update-generated-files-action@1bf39f3aec4afa88c0c7060cdb0d88332c052991 # v2.48.0
