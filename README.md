@@ -74,4 +74,5 @@ It ignores other events.
 | `starts-with` | - | Multi-line string of starts-with condition
 | `ends-with` | - | Multi-line string of ends-with condition
 | `contains` | - | Multi-line string of contains condition
+| `issue-number` | - | Number of an issue or pull request on which to hide comment(s)
 | `token` | `${{ github.token }}` | GitHub token to post a comment
