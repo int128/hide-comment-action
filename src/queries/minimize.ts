@@ -1,7 +1,7 @@
-import { GitHub } from '@actions/github/lib/utils'
-import { MinimizeCommentMutation, MinimizeCommentMutationVariables } from '../generated/graphql'
+import * as github from '@actions/github'
+import { MinimizeCommentMutation, MinimizeCommentMutationVariables } from '../generated/graphql.js'
 
-type Octokit = InstanceType<typeof GitHub>
+type Octokit = ReturnType<typeof github.getOctokit>
 
 const query = /* GraphQL */ `
   mutation minimizeComment($id: ID!) {
@@ -13,7 +13,7 @@ const query = /* GraphQL */ `
 
 export const minimizeComment = async (
   o: Octokit,
-  v: MinimizeCommentMutationVariables
+  v: MinimizeCommentMutationVariables,
 ): Promise<MinimizeCommentMutation> => {
   return await o.graphql<MinimizeCommentMutation>(query, v)
 }
