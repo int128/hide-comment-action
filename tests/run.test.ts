@@ -1,4 +1,4 @@
-import { toMinimize } from '../src/run'
+import { toMinimize } from '../src/run.js'
 
 describe('filter to minimize', () => {
   test('no filter', () => {
