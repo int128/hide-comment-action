@@ -7,6 +7,8 @@ on:
       - tests/**
       - '*.json'
       - '*.yaml'
+      - '*.config.*'
+      - graphql-codegen.*
       - .github/workflows/ts.yaml
   push:
     branches:
@@ -16,6 +18,8 @@ on:
       - tests/**
       - '*.json'
       - '*.yaml'
+      - '*.config.*'
+      - graphql-codegen.*
       - .github/workflows/ts.yaml
 
 jobs:
