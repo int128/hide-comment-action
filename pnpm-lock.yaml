@@ -31,8 +31,8 @@ importers:
         specifier: 4.2.0
         version: 4.2.0(graphql@16.8.1)
       '@octokit/graphql-schema':
-        specifier: 15.13.0
-        version: 15.13.0
+        specifier: 15.14.0
+        version: 15.14.0
       '@tsconfig/node20':
         specifier: 20.1.4
         version: 20.1.4
@@ -855,8 +855,8 @@ packages:
     resolution: {integrity: sha512-DWPLtr1Kz3tv8L0UvXTDP1fNwM0S+z6EJpRcvH66orY6Eld4XBMCSYsaWp4xIm61jTWxK68BrR7ibO+vSDnZqw==}
     engines: {node: '>= 18'}
 
-  '@octokit/graphql-schema@15.13.0':
-    resolution: {integrity: sha512-sJSfthiICvYTrT9fG0YBmRiRGTuZajmphzEJ6dmbJ2dARcNx904atCWwjdFJWs5Il5YtPzsaa9GNa8oejDtbQw==}
+  '@octokit/graphql-schema@15.14.0':
+    resolution: {integrity: sha512-l3X8LUJoEiOUtNZd1DnUjL9J3vTAz7lOBrNp5vF4SumMkdpLcxvJ0Xital3gSZNkGg0iwblu4ixIzKffnOa37A==}
 
   '@octokit/graphql@7.0.2':
     resolution: {integrity: sha512-OJ2iGMtj5Tg3s6RaXH22cJcxXRi7Y3EBqbHTBRq+PQAqfaS8f/236fUrWhfSn8P4jovyzqucxme7/vWSSZBX2Q==}
@@ -4068,7 +4068,7 @@ snapshots:
       '@octokit/types': 12.6.0
       universal-user-agent: 6.0.1
 
-  '@octokit/graphql-schema@15.13.0':
+  '@octokit/graphql-schema@15.14.0':
     dependencies:
       graphql: 16.8.1
       graphql-tag: 2.12.6(graphql@16.8.1)
