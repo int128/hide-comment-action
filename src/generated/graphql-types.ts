@@ -682,6 +682,8 @@ export type AddedToProjectEvent = Node & {
 export type AnnouncementBanner = {
   /** The text of the announcement */
   announcement?: Maybe<Scalars['String']['output']>;
+  /** The date the announcement was created */
+  announcementCreatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** The expiration date of the announcement, if any */
   announcementExpiresAt?: Maybe<Scalars['DateTime']['output']>;
   /** Whether the announcement can be dismissed by the user */
@@ -6507,6 +6509,8 @@ export type Enterprise = AnnouncementBanner & Node & {
   __typename?: 'Enterprise';
   /** The text of the announcement */
   announcement?: Maybe<Scalars['String']['output']>;
+  /** The date the announcement was created */
+  announcementCreatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** The expiration date of the announcement, if any */
   announcementExpiresAt?: Maybe<Scalars['DateTime']['output']>;
   /** Whether the announcement can be dismissed by the user */
@@ -14820,6 +14824,8 @@ export type Organization = Actor & AnnouncementBanner & MemberStatusable & Node 
   __typename?: 'Organization';
   /** The text of the announcement */
   announcement?: Maybe<Scalars['String']['output']>;
+  /** The date the announcement was created */
+  announcementCreatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** The expiration date of the announcement, if any */
   announcementExpiresAt?: Maybe<Scalars['DateTime']['output']>;
   /** Whether the announcement can be dismissed by the user */
