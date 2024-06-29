@@ -18,7 +18,7 @@
     "@graphql-codegen/import-types-preset": "3.0.0",
     "@graphql-codegen/typescript": "4.0.8",
     "@graphql-codegen/typescript-operations": "4.2.2",
-    "@octokit/graphql-schema": "15.22.0",
+    "@octokit/graphql-schema": "15.23.0",
     "@tsconfig/node20": "20.1.4",
     "@types/jest": "29.5.12",
     "@types/node": "20.14.9",
