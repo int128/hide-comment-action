@@ -1,10 +1,8 @@
 import * as core from '@actions/core'
-import * as github from '@actions/github'
-import { CommentsQuery } from './generated/graphql.js'
+import * as github from './github.js'
+import { filterComments } from './filter.js'
 import { queryComments } from './queries/comments.js'
 import { minimizeComment } from './queries/minimize.js'
-
-type Octokit = ReturnType<typeof github.getOctokit>
 
 type Inputs = {
   authors: string[]
@@ -63,7 +61,7 @@ export const run = async (inputs: Inputs): Promise<void> => {
   }
 }
 
-const getCurrentLogin = async (octokit: Octokit) => {
+const getCurrentLogin = async (octokit: github.Octokit) => {
   try {
     const { data: user } = await octokit.rest.users.getAuthenticated()
     return user.login
@@ -71,48 +69,4 @@ const getCurrentLogin = async (octokit: Octokit) => {
     core.warning(`could not determine the current user: ${String(e)}`)
     return 'github-actions'
   }
-}
-
-type Comment = NonNullable<
-  NonNullable<
-    NonNullable<NonNullable<NonNullable<CommentsQuery['repository']>['pullRequest']>['comments']>['nodes']
-  >[number]
->
-
-const filterComments = (q: CommentsQuery, inputs: Inputs): Comment[] => {
-  if (q.repository?.pullRequest?.comments.nodes == null) {
-    core.info(`unexpected response: repository === ${JSON.stringify(q.repository)}`)
-    return []
-  }
-  const comments = []
-  for (const node of q.repository.pullRequest.comments.nodes) {
-    if (node == null) {
-      continue
-    }
-    comments.push(node)
-  }
-  return comments.filter((c) => toMinimize(c, inputs))
-}
-
-export const toMinimize = (c: Comment, inputs: Inputs): boolean => {
-  if (c.isMinimized) {
-    return false
-  }
-  if (inputs.authors.some((a) => c.author?.login === a)) {
-    core.info(`authors filter matched: ${c.url}`)
-    return true
-  }
-  if (inputs.startsWith.some((s) => c.body.trimStart().startsWith(s))) {
-    core.info(`starts-with matched: ${c.url}`)
-    return true
-  }
-  if (inputs.endsWith.some((s) => c.body.trimEnd().endsWith(s))) {
-    core.info(`ends-with matched: ${c.url}`)
-    return true
-  }
-  if (inputs.contains.some((s) => c.body.includes(s))) {
-    core.info(`contains matched: ${c.url}`)
-    return true
-  }
-  return false
 }
