@@ -1,10 +1,8 @@
 import * as core from '@actions/core'
-import * as github from '@actions/github'
+import * as github from './github.js'
 import { CommentsQuery } from './generated/graphql.js'
 import { queryComments } from './queries/comments.js'
 import { minimizeComment } from './queries/minimize.js'
-
-type Octokit = ReturnType<typeof github.getOctokit>
 
 type Inputs = {
   authors: string[]
@@ -63,7 +61,7 @@ export const run = async (inputs: Inputs): Promise<void> => {
   }
 }
 
-const getCurrentLogin = async (octokit: Octokit) => {
+const getCurrentLogin = async (octokit: github.Octokit) => {
   try {
     const { data: user } = await octokit.rest.users.getAuthenticated()
     return user.login
