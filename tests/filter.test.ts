@@ -1,4 +1,4 @@
-import { toMinimize } from '../src/run.js'
+import { toMinimize } from '../src/filter.js'
 
 describe('filter to minimize', () => {
   test('no filter', () => {
@@ -15,7 +15,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
@@ -36,7 +35,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
@@ -57,7 +55,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeTruthy()
@@ -77,7 +74,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
@@ -97,7 +93,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: ['<!-- head -->'],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeTruthy()
@@ -116,7 +111,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: ['<!-- head -->'],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
@@ -136,7 +130,6 @@ describe('filter to minimize', () => {
           endsWith: ['<!-- tail -->'],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeTruthy()
@@ -155,7 +148,6 @@ describe('filter to minimize', () => {
           endsWith: ['<!-- tail -->'],
           startsWith: [],
           contains: [],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
@@ -175,7 +167,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: ['<!-- mark -->'],
-          token: `token`,
         },
       ),
     ).toBeTruthy()
@@ -194,7 +185,6 @@ describe('filter to minimize', () => {
           endsWith: [],
           startsWith: [],
           contains: ['<!-- bar -->'],
-          token: `token`,
         },
       ),
     ).toBeFalsy()
