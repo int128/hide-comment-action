@@ -10,6 +10,8 @@ const main = async (): Promise<void> => {
     issueNumber: issueNumber(core.getInput('issue-number')),
     token: core.getInput('token', { required: true }),
   })
+  core.setOutput('starts-with', core.getInput('starts-with'))
+  core.setOutput('ends-with', core.getInput('ends-with'))
 }
 
 const issueNumber = (s: string): number | undefined => {

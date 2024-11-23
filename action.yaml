@@ -1,17 +1,18 @@
 name: hide-comment
-description: hide comment(s) in a pull request
+description: Hide comment(s) of a pull request or issue
+
 inputs:
   authors:
-    description: multi-line string of author condition
+    description: Author condition (multi-line string)
     required: false
   starts-with:
-    description: multi-line string of starts-with condition
+    description: Starts-with condition (multi-line string)
     required: false
   ends-with:
-    description: multi-line string of ends-with condition
+    description: Ends-with condition (multi-line string)
     required: false
   contains:
-    description: multi-line string of contains condition
+    description: Contains condition (multi-line string)
     required: false
   issue-number:
     description: Number of an issue or pull request on which to hide comment(s)
@@ -20,6 +21,13 @@ inputs:
     description: GitHub token to post a comment
     required: true
     default: ${{ github.token }}
+
+outputs:
+  starts-with:
+    description: Same as inputs.starts-with
+  ends-with:
+    description: Same as inputs.ends-with
+
 runs:
   using: 'node20'
   main: 'dist/index.js'
