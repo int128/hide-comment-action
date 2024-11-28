@@ -22,7 +22,7 @@
     "@octokit/graphql-schema": "15.25.0",
     "@tsconfig/node20": "20.1.4",
     "@types/jest": "29.5.14",
-    "@types/node": "20.17.8",
+    "@types/node": "20.17.9",
     "@vercel/ncc": "0.38.3",
     "eslint": "9.15.0",
     "eslint-plugin-jest": "28.9.0",
