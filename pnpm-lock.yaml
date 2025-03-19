@@ -15,8 +15,8 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
       '@octokit/plugin-retry':
-        specifier: 7.1.4
-        version: 7.1.4(@octokit/core@5.1.0)
+        specifier: 7.2.0
+        version: 7.2.0(@octokit/core@5.1.0)
       graphql:
         specifier: 16.10.0
         version: 16.10.0
@@ -934,8 +934,8 @@ packages:
     peerDependencies:
       '@octokit/core': '5'
 
-  '@octokit/plugin-retry@7.1.4':
-    resolution: {integrity: sha512-7AIP4p9TttKN7ctygG4BtR7rrB0anZqoU9ThXFk8nETqIfvgPUANTSYHqWYknK7W3isw59LpZeLI8pcEwiJdRg==}
+  '@octokit/plugin-retry@7.2.0':
+    resolution: {integrity: sha512-psMbEYb/Fh+V+ZaFo8J16QiFz4sVTv3GntCSU+hYqzHiMdc3P+hhHLVv+dJt0PGIPAGoIA5u+J2DCJdK6lEPsQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       '@octokit/core': '>=6'
@@ -4184,7 +4184,7 @@ snapshots:
       '@octokit/core': 5.1.0
       '@octokit/types': 12.6.0
 
-  '@octokit/plugin-retry@7.1.4(@octokit/core@5.1.0)':
+  '@octokit/plugin-retry@7.2.0(@octokit/core@5.1.0)':
     dependencies:
       '@octokit/core': 5.1.0
       '@octokit/request-error': 6.1.7

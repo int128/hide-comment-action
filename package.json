@@ -11,7 +11,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@octokit/plugin-retry": "7.1.4",
+    "@octokit/plugin-retry": "7.2.0",
     "graphql": "16.10.0"
   },
   "devDependencies": {
