@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import { toMinimize } from '../src/filter.js'
 
 describe('filter to minimize', () => {
