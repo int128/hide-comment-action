@@ -1,5 +1,5 @@
-import * as github from '../github.js'
-import { CommentsQuery, CommentsQueryVariables } from '../generated/graphql.js'
+import type { CommentsQuery, CommentsQueryVariables } from '../generated/graphql.js'
+import type * as github from '../github.js'
 
 const query = /* GraphQL */ `
   query comments($owner: String!, $name: String!, $number: Int!) {

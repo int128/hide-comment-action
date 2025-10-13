@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { CommentsQuery } from './generated/graphql.js'
+import type { CommentsQuery } from './generated/graphql.js'
 
 type Inputs = {
   authors: string[]
