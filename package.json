@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",
-    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/cli": "6.0.0",
     "@graphql-codegen/import-types-preset": "3.0.1",
-    "@graphql-codegen/typescript": "4.1.6",
-    "@graphql-codegen/typescript-operations": "4.6.1",
+    "@graphql-codegen/typescript": "5.0.2",
+    "@graphql-codegen/typescript-operations": "5.0.2",
     "@octokit/graphql-schema": "15.26.0",
     "@tsconfig/node20": "20.1.6",
     "@types/node": "20.19.19",
