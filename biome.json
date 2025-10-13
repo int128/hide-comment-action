@@ -12,5 +12,11 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!src/generated/**"
+    ]
   }
 }
