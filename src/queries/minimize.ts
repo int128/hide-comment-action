@@ -1,5 +1,5 @@
-import * as github from '../github.js'
-import { MinimizeCommentMutation, MinimizeCommentMutationVariables } from '../generated/graphql.js'
+import type { MinimizeCommentMutation, MinimizeCommentMutationVariables } from '../generated/graphql.js'
+import type * as github from '../github.js'
 
 const query = /* GraphQL */ `
   mutation minimizeComment($id: ID!) {

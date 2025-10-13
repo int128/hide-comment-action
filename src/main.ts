@@ -19,7 +19,7 @@ const issueNumber = (s: string): number | undefined => {
     return undefined
   }
 
-  const n = parseInt(s)
+  const n = parseInt(s, 10)
   if (Number.isNaN(n)) {
     throw new Error('issue-number is an invalid number')
   }

@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
-import * as github from './github.js'
 import { filterComments } from './filter.js'
+import * as github from './github.js'
 import { queryComments } from './queries/comments.js'
 import { minimizeComment } from './queries/minimize.js'
 
