@@ -19,7 +19,7 @@
     "@graphql-codegen/typescript": "5.0.2",
     "@graphql-codegen/typescript-operations": "5.0.2",
     "@octokit/graphql-schema": "15.26.0",
-    "@tsconfig/node20": "20.1.6",
+    "@tsconfig/node20": "20.1.7",
     "@types/node": "20.19.24",
     "@vercel/ncc": "0.38.4",
     "js-yaml": "4.1.0",
