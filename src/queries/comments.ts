@@ -1,5 +1,5 @@
+import type { Octokit } from '@octokit/action'
 import type { CommentsQuery, CommentsQueryVariables } from '../generated/graphql.js'
-import type * as github from '../github.js'
 
 const query = /* GraphQL */ `
   query comments($owner: String!, $name: String!, $number: Int!) {
@@ -21,6 +21,6 @@ const query = /* GraphQL */ `
   }
 `
 
-export const queryComments = async (o: github.Octokit, v: CommentsQueryVariables): Promise<CommentsQuery> => {
+export const queryComments = async (o: Octokit, v: CommentsQueryVariables): Promise<CommentsQuery> => {
   return await o.graphql<CommentsQuery>(query, v)
 }

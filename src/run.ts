@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
+import type { Octokit } from '@octokit/action'
 import { filterComments } from './filter.js'
-import * as github from './github.js'
+import type { Context } from './github.js'
 import { queryComments } from './queries/comments.js'
 import { minimizeComment } from './queries/minimize.js'
 
@@ -10,16 +11,14 @@ type Inputs = {
   endsWith: string[]
   contains: string[]
   issueNumber?: number
-  token: string
 }
 
-export const run = async (inputs: Inputs): Promise<void> => {
-  const pullNumber = inputs.issueNumber ?? github.context.payload.pull_request?.number
+export const run = async (inputs: Inputs, octokit: Octokit, context: Context): Promise<void> => {
+  const pullNumber = inputs.issueNumber ?? inferPullNumber(context)
   if (pullNumber === undefined) {
-    core.info(`non pull_request event: ${github.context.eventName}`)
+    core.info(`non pull_request event: ${context.eventName}`)
     return
   }
-  const octokit = github.getOctokit(inputs.token)
 
   if (
     inputs.authors.length === 0 &&
@@ -34,8 +33,8 @@ export const run = async (inputs: Inputs): Promise<void> => {
 
   const q = await core.group(`query comments in pull request #${pullNumber}`, async () => {
     const q = await queryComments(octokit, {
-      owner: github.context.repo.owner,
-      name: github.context.repo.repo,
+      owner: context.repo.owner,
+      name: context.repo.repo,
       number: pullNumber,
     })
     core.info(JSON.stringify(q, undefined, 2))
@@ -61,7 +60,13 @@ export const run = async (inputs: Inputs): Promise<void> => {
   }
 }
 
-const getCurrentLogin = async (octokit: github.Octokit) => {
+const inferPullNumber = (context: Context): number | undefined => {
+  if ('pull_request' in context.payload) {
+    return context.payload.pull_request.number
+  }
+}
+
+const getCurrentLogin = async (octokit: Octokit) => {
   try {
     const { data: user } = await octokit.rest.users.getAuthenticated()
     return user.login

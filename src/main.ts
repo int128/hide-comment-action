@@ -1,15 +1,19 @@
 import * as core from '@actions/core'
+import { getContext, getOctokit } from './github.js'
 import { run } from './run.js'
 
 const main = async (): Promise<void> => {
-  await run({
-    authors: core.getMultilineInput('authors'),
-    startsWith: core.getMultilineInput('starts-with'),
-    endsWith: core.getMultilineInput('ends-with'),
-    contains: core.getMultilineInput('contains'),
-    issueNumber: issueNumber(core.getInput('issue-number')),
-    token: core.getInput('token', { required: true }),
-  })
+  await run(
+    {
+      authors: core.getMultilineInput('authors'),
+      startsWith: core.getMultilineInput('starts-with'),
+      endsWith: core.getMultilineInput('ends-with'),
+      contains: core.getMultilineInput('contains'),
+      issueNumber: issueNumber(core.getInput('issue-number')),
+    },
+    getOctokit(),
+    await getContext(),
+  )
   core.setOutput('starts-with', core.getInput('starts-with'))
   core.setOutput('ends-with', core.getInput('ends-with'))
 }
