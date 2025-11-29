@@ -12,7 +12,7 @@ importers:
         specifier: 1.11.1
         version: 1.11.1
       '@octokit/action':
-        specifier: ^8.0.4
+        specifier: 8.0.4
         version: 8.0.4
       '@octokit/plugin-retry':
         specifier: 8.0.3
@@ -40,7 +40,7 @@ importers:
         specifier: 15.26.0
         version: 15.26.0
       '@octokit/webhooks-types':
-        specifier: ^7.6.1
+        specifier: 7.6.1
         version: 7.6.1
       '@tsconfig/node20':
         specifier: 20.1.8
@@ -1201,13 +1201,11 @@ packages:
     resolution: {integrity: sha512-O8AplvIeavK5ABmZlKBq9/STdZlnQo7Sle0LLhVA7QT+CiGpNVe197/t8Aph9bhJqbDVGCHpY2i7QyfEDDStDg==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.42.0':
     resolution: {integrity: sha512-6Qb66tbKVN7VyQrekhEzbHRxXXFFD8QKiFAwX5v9Xt6FiJ3BnCVBuyBxa2fkFGqxOCSGGYNejxd8ht+q5SnmtA==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.42.0':
     resolution: {integrity: sha512-KQETDSEBamQFvg/d8jajtRwLNBlGc3aKpaGiP/LvEbnmVUKlFta1vqJqTrvPtsYsfbE/DLg5CC9zyXRX3fnBiA==}
