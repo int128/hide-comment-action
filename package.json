@@ -22,7 +22,7 @@
     "@octokit/graphql-schema": "15.26.1",
     "@octokit/webhooks-types": "7.6.1",
     "@tsconfig/node24": "24.0.4",
-    "@types/node": "24.13.2",
+    "@types/node": "24.13.3",
     "@vercel/ncc": "0.44.1",
     "pnpm": "11.10.0",
     "typescript": "6.0.3",
