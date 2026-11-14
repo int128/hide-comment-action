@@ -1,23 +1,27 @@
+/** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 import * as Types from './graphql-types.js';
 
-export type CommentsQueryVariables = Types.Exact<{
-  owner: Types.Scalars['String']['input'];
-  name: Types.Scalars['String']['input'];
-  number: Types.Scalars['Int']['input'];
+export type CommentsQueryVariables = Exact<{
+  owner: string;
+  name: string;
+  number: number;
 }>;
 
 
-export type CommentsQuery = { __typename?: 'Query', repository?: { __typename?: 'Repository', pullRequest?: { __typename?: 'PullRequest', comments: { __typename?: 'IssueCommentConnection', nodes?: Array<{ __typename?: 'IssueComment', id: string, url: string, body: string, isMinimized: boolean, author?:
-            | { __typename?: 'Bot', login: string }
-            | { __typename?: 'EnterpriseUserAccount', login: string }
-            | { __typename?: 'Mannequin', login: string }
-            | { __typename?: 'Organization', login: string }
-            | { __typename?: 'User', login: string }
+export type CommentsQuery = { repository: { pullRequest: { comments: { nodes: Array<{ id: string, url: string, body: string, isMinimized: boolean, author:
+            | { login: string }
+            | { login: string }
+            | { login: string }
+            | { login: string }
+            | { login: string }
            | null } | null> | null } } | null } | null };
 
-export type MinimizeCommentMutationVariables = Types.Exact<{
-  id: Types.Scalars['ID']['input'];
+export type MinimizeCommentMutationVariables = Exact<{
+  id: string | number;
 }>;
 
 
-export type MinimizeCommentMutation = { __typename?: 'Mutation', minimizeComment?: { __typename?: 'MinimizeCommentPayload', clientMutationId?: string | null } | null };
+export type MinimizeCommentMutation = { minimizeComment: { clientMutationId: string | null } | null };
