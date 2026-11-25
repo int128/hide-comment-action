@@ -21,7 +21,7 @@
     "@graphql-codegen/typescript-operations": "5.1.0",
     "@octokit/graphql-schema": "15.26.1",
     "@octokit/webhooks-types": "7.6.1",
-    "@tsconfig/node24": "24.0.6",
+    "@tsconfig/node26": "26.0.0",
     "@types/node": "24.19.2",
     "@vercel/ncc": "0.45.0",
     "pnpm": "12.18.0",
